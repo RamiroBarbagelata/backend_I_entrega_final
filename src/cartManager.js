@@ -1,49 +1,64 @@
-const fs = require('fs');
+const fs = require("fs").promises;
+const path = require("path");
 
 class CartManager {
-    constructor(filePath) {
-        this.filePath = filePath;
+    constructor() {
+        this.filePath = path.join(__dirname, "carts.json");
     }
 
-    async readFile() {
+    // Cargar carritos desde el archivo
+    async loadCarts() {
         try {
-            const data = await fs.promises.readFile(this.filePath, 'utf-8');
-            return JSON.parse(data);
-        } catch (err) {
-            console.error(err);
-            return [];
+            const data = await fs.readFile(this.filePath, "utf-8");
+            this.carts = JSON.parse(data);
+        } catch (error) {
+            // Si no existe o da error, empezamos con un array vacío
+            this.carts = [];
         }
     }
 
-    async writeFile(data) {
+    // Guardar carritos en el archivo
+    async saveCarts() {
         try {
-            await fs.promises.writeFile(this.filePath, JSON.stringify(data, null, 2));
-        } catch (err) {
-            console.error(err);
+            await fs.writeFile(this.filePath, JSON.stringify(this.carts, null, 2));
+        } catch (error) {
+            console.error("❌ Error al guardar carritos:", error.message);
         }
     }
 
+    // Crear un nuevo carrito
     async createCart() {
-        const carts = await this.readFile();
-        const newCart = { id: carts.length + 1, products: [] };
-        carts.push(newCart);
-        await this.writeFile(carts);
+        await this.loadCarts();
+
+        const newId = this.carts.length > 0 ? Math.max(...this.carts.map(c => c.id)) + 1 : 1;
+
+        const newCart = {
+            id: newId,
+            products: []
+        };
+
+        this.carts.push(newCart);
+        await this.saveCarts();
+
         return newCart;
     }
 
+    // Obtener un carrito por su ID
     async getCartById(id) {
-        const carts = await this.readFile();
-        return carts.find(c => c.id === id);
+        await this.loadCarts();
+        return this.carts.find(c => c.id === id);
     }
 
+    // Actualizar un carrito completo
     async updateCart(cart) {
-        const carts = await this.readFile();
-        const index = carts.findIndex(c => c.id === cart.id);
+        await this.loadCarts();
+        const index = this.carts.findIndex(c => c.id === cart.id);
         if (index !== -1) {
-            carts[index] = cart;
-            await this.writeFile(carts);
+            this.carts[index] = cart;
+            await this.saveCarts();
         }
     }
 }
 
 module.exports = CartManager;
+

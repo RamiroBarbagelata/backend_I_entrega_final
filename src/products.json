@@ -231,5 +231,69 @@
     "thumbnails": [
       "img/short1.jpg"
     ]
+  },
+  {
+    "id": null,
+    "title": "Camiseta de Algodón",
+    "description": "Camiseta cómoda para el día a día",
+    "code": "CA001",
+    "price": 2000,
+    "status": true,
+    "stock": 50,
+    "category": "Indumentaria",
+    "thumbnails": [
+      "img/camiseta1.jpg"
+    ]
+  },
+  {
+    "id": null,
+    "title": "Camiseta de Algodón",
+    "description": "Camiseta cómoda para el día a día",
+    "code": "CA001",
+    "price": 2000,
+    "status": true,
+    "stock": 50,
+    "category": "Indumentaria",
+    "thumbnails": [
+      "img/camiseta1.jpg"
+    ]
+  },
+  {
+    "id": null,
+    "title": "Camiseta de Algodón",
+    "description": "Camiseta cómoda para el día a día",
+    "code": "CA001",
+    "price": 2000,
+    "status": true,
+    "stock": 50,
+    "category": "Indumentaria",
+    "thumbnails": [
+      "img/camiseta1.jpg"
+    ]
+  },
+  {
+    "id": null,
+    "title": "Producto de prueba",
+    "description": "Este es un producto de ejemplo",
+    "code": "ABC123",
+    "price": 100,
+    "status": true,
+    "stock": 10,
+    "category": "prueba",
+    "thumbnails": []
+  },
+  {
+    "id": null,
+    "title": "Nuevo Producto",
+    "description": "Descripción del nuevo producto",
+    "code": "ABC123",
+    "price": 100,
+    "status": true,
+    "stock": 50,
+    "category": "Electrónica",
+    "thumbnails": [
+      "url_imagen1",
+      "url_imagen2"
+    ]
   }
 ]
