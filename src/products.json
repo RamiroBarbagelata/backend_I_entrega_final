@@ -1,0 +1,235 @@
+[
+  {
+    "id": 1,
+    "title": "Remera Deportiva",
+    "description": "Remera de algodón ideal para entrenamiento.",
+    "code": "RD001",
+    "price": 5000,
+    "status": true,
+    "stock": 25,
+    "category": "Indumentaria",
+    "thumbnails": [
+      "img/remera1.jpg"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Zapatillas Running",
+    "description": "Zapatillas livianas para correr largas distancias.",
+    "code": "ZR002",
+    "price": 15000,
+    "status": true,
+    "stock": 15,
+    "category": "Calzado",
+    "thumbnails": [
+      "img/zapatillas1.jpg"
+    ]
+  },
+  {
+    "title": "Short Deportivo",
+    "description": "Short liviano ideal para running y gym.",
+    "code": "SD003",
+    "price": 3500,
+    "status": true,
+    "stock": 20,
+    "category": "Indumentaria",
+    "thumbnails": [
+      "img/short1.jpg"
+    ]
+  },
+  {
+    "id": null,
+    "title": "Short Deportivo",
+    "description": "Short liviano ideal para running y gym.",
+    "code": "SD003",
+    "price": 3500,
+    "status": true,
+    "stock": 20,
+    "category": "Indumentaria",
+    "thumbnails": [
+      "img/short1.jpg"
+    ]
+  },
+  {
+    "id": 1,
+    "title": "Short Deportivo",
+    "description": "Short liviano ideal para running y gym.",
+    "code": "SD003",
+    "price": 3500,
+    "status": true,
+    "stock": 20,
+    "category": "Indumentaria",
+    "thumbnails": [
+      "img/short1.jpg"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Short Deportivo",
+    "description": "Short liviano ideal para running y gym.",
+    "code": "SD003",
+    "price": 3500,
+    "status": true,
+    "stock": 20,
+    "category": "Indumentaria",
+    "thumbnails": [
+      "img/short1.jpg"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Short Deportivo",
+    "description": "Short liviano ideal para running y gym.",
+    "code": "SD003",
+    "price": 3500,
+    "status": true,
+    "stock": 20,
+    "category": "Indumentaria",
+    "thumbnails": [
+      "img/short1.jpg"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Short Deportivo",
+    "description": "Short liviano ideal para running y gym.",
+    "code": "SD003",
+    "price": 3500,
+    "status": true,
+    "stock": 20,
+    "category": "Indumentaria",
+    "thumbnails": [
+      "img/short1.jpg"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Short Deportivo",
+    "description": "Short liviano ideal para running y gym.",
+    "code": "SD003",
+    "price": 3500,
+    "status": true,
+    "stock": 20,
+    "category": "Indumentaria",
+    "thumbnails": [
+      "img/short1.jpg"
+    ]
+  },
+  {
+    "id": null,
+    "title": "Short Deportivo",
+    "description": "Short liviano ideal para running y gym.",
+    "code": "SD003",
+    "price": 3500,
+    "status": true,
+    "stock": 20,
+    "category": "Indumentaria",
+    "thumbnails": [
+      "img/short1.jpg"
+    ]
+  },
+  {
+    "id": null,
+    "title": "Short Deportivo",
+    "description": "Short liviano ideal para running y gym.",
+    "code": "SD003",
+    "price": 3500,
+    "status": true,
+    "stock": 20,
+    "category": "Indumentaria",
+    "thumbnails": [
+      "img/short1.jpg"
+    ]
+  },
+  {
+    "id": null,
+    "title": "Short Deportivo",
+    "description": "Short liviano ideal para running y gym.",
+    "code": "SD003",
+    "price": 3500,
+    "status": true,
+    "stock": 20,
+    "category": "Indumentaria",
+    "thumbnails": [
+      "img/short1.jpg"
+    ]
+  },
+  {
+    "id": null,
+    "title": "Short Deportivo",
+    "description": "Short liviano ideal para running y gym.",
+    "code": "SD003",
+    "price": 3500,
+    "status": true,
+    "stock": 20,
+    "category": "Indumentaria",
+    "thumbnails": [
+      "img/short1.jpg"
+    ]
+  },
+  {
+    "id": null,
+    "title": "Short Deportivo",
+    "description": "Short liviano ideal para running y gym.",
+    "code": "SD003",
+    "price": 3500,
+    "status": true,
+    "stock": 20,
+    "category": "Indumentaria",
+    "thumbnails": [
+      "img/short1.jpg"
+    ]
+  },
+  {
+    "id": null,
+    "title": "Short Deportivo",
+    "description": "Short liviano ideal para running y gym.",
+    "code": "SD003",
+    "price": 3500,
+    "status": true,
+    "stock": 20,
+    "category": "Indumentaria",
+    "thumbnails": [
+      "img/short1.jpg"
+    ]
+  },
+  {
+    "id": null,
+    "title": "Short Deportivo",
+    "description": "Short liviano ideal para running y gym.",
+    "code": "SD003",
+    "price": 3500,
+    "status": true,
+    "stock": 20,
+    "category": "Indumentaria",
+    "thumbnails": [
+      "img/short1.jpg"
+    ]
+  },
+  {
+    "id": null,
+    "title": "Short Deportivo",
+    "description": "Short liviano ideal para running y gym.",
+    "code": "SD003",
+    "price": 3500,
+    "status": true,
+    "stock": 20,
+    "category": "Indumentaria",
+    "thumbnails": [
+      "img/short1.jpg"
+    ]
+  },
+  {
+    "id": null,
+    "title": "Short Deportivo",
+    "description": "Short liviano ideal para running y gym.",
+    "code": "SD003",
+    "price": 3500,
+    "status": true,
+    "stock": 20,
+    "category": "Indumentaria",
+    "thumbnails": [
+      "img/short1.jpg"
+    ]
+  }
+]
