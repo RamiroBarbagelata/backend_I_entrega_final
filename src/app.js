@@ -106,11 +106,11 @@ app.post("/api/carts/:cid/product/:pid", async (req, res) => {
         carrito.products.push({ product: productId, quantity: 1 });
     }
 
-    await cartManager.updateCart(carrito);  // Actualizar carrito en el archivo
+    await cartManager.updateCart(carrito);  
     res.json(carrito);
 });
 
-// --------------------- ESCUCHAR SERVIDOR ---------------------
+
 
 app.listen(8080, () => {
     console.log('Servidor funcionando en el puerto 8080');

@@ -3,7 +3,6 @@ const path = require("path");
 
 class ProductManager {
     constructor() {
-        // Usamos __dirname para asegurar que la ruta sea correcta en cualquier sistema operativo
         this.path = path.join(__dirname, "products.json");
     }
 
@@ -12,31 +11,32 @@ class ProductManager {
         try {
             let data = await fs.readFile(this.path, "utf-8");
             this.products = JSON.parse(data);
-            console.log("Productos cargados:", this.products);  // Log para depurar
+            console.log("Productos cargados:", this.products);
         } catch (error) {
-            // Si el archivo no existe o hay un error, iniciamos el array vacío
             console.log("No se pudo cargar productos, inicializando lista vacía.");
             this.products = [];
         }
     }
-    
+
 
     // Método para guardar los productos en el archivo JSON
     async saveProducts() {
         try {
             await fs.writeFile(this.path, JSON.stringify(this.products, null, 2));
         } catch (error) {
-            console.error("❌ Error al guardar productos:", error.message);
+            console.error("Error al guardar productos:", error.message);
         }
     }
 
 
     // Método para agregar un nuevo producto
     async addProduct(product) {
-        await this.loadProducts(); // Cargamos los productos existentes
+        await this.loadProducts();
 
-        // Verificamos si la lista de productos está vacía, y si es así, comenzamos con un ID en 1.
-        let newId = this.products.length > 0 ? Math.max(...this.products.map(p => p.id)) + 1 : 1;
+        // Filtrar productos con id: null y calcular el nuevo ID
+        let newId = this.products.filter(p => p.id !== null).length > 0
+            ? Math.max(...this.products.filter(p => p.id !== null).map(p => p.id)) + 1
+            : 1;
 
         // Creamos el nuevo producto con el ID generado
         const newProduct = {
@@ -52,37 +52,38 @@ class ProductManager {
     }
 
 
+
     // Método para obtener todos los productos
     async getAllProducts() {
-        await this.loadProducts(); // Cargamos los productos
+        await this.loadProducts(); 
         return this.products;
     }
 
     // Método para obtener un producto por ID
     async getProductById(id) {
-        await this.loadProducts(); // Cargamos los productos
+        await this.loadProducts(); 
         return this.products.find(product => product.id === id);
     }
 
     // Método para actualizar un producto
     async updateProduct(id, updatedData) {
-        await this.loadProducts(); // Cargamos los productos
+        await this.loadProducts(); 
         const productIndex = this.products.findIndex(p => p.id === id);
 
         if (productIndex !== -1) {
             this.products[productIndex] = { ...this.products[productIndex], ...updatedData };
-            await this.saveProducts(); // Guardamos los productos actualizados
+            await this.saveProducts(); 
         }
     }
 
     // Método para eliminar un producto
     async deleteProduct(id) {
-        await this.loadProducts(); // Cargamos los productos
+        await this.loadProducts(); 
         const index = this.products.findIndex(p => p.id === id);
 
         if (index !== -1) {
             this.products.splice(index, 1);
-            await this.saveProducts(); // Guardamos los productos actualizados
+            await this.saveProducts(); 
         }
     }
 }

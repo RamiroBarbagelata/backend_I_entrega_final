@@ -295,5 +295,61 @@
       "url_imagen1",
       "url_imagen2"
     ]
+  },
+  {
+    "id": null,
+    "title": "Nuevo Producto",
+    "description": "Descripción del nuevo producto",
+    "code": "ABC123",
+    "price": 100,
+    "status": true,
+    "stock": 50,
+    "category": "Electrónica",
+    "thumbnails": [
+      "url_imagen1",
+      "url_imagen2"
+    ]
+  },
+  {
+    "id": null,
+    "title": "Nuevo Producto",
+    "description": "Descripción del nuevo producto",
+    "code": "ABC123",
+    "price": 100,
+    "status": true,
+    "stock": 50,
+    "category": "Electrónica",
+    "thumbnails": [
+      "url_imagen1",
+      "url_imagen2"
+    ]
+  },
+  {
+    "id": null,
+    "title": "Nuevo Producto",
+    "description": "Descripción del nuevo producto",
+    "code": "ABC123",
+    "price": 100,
+    "status": true,
+    "stock": 50,
+    "category": "Electrónica",
+    "thumbnails": [
+      "url_imagen1",
+      "url_imagen2"
+    ]
+  },
+  {
+    "id": null,
+    "title": "Nuevo Producto",
+    "description": "Descripción del nuevo producto",
+    "code": "ABC123",
+    "price": 100,
+    "status": true,
+    "stock": 50,
+    "category": "Electrónica",
+    "thumbnails": [
+      "url_imagen1",
+      "url_imagen2"
+    ]
   }
 ]

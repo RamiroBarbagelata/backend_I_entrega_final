@@ -6,13 +6,13 @@ class CartManager {
         this.filePath = path.join(__dirname, "carts.json");
     }
 
-    // Cargar carritos desde el archivo
+    // Cargar carrito
     async loadCarts() {
         try {
             const data = await fs.readFile(this.filePath, "utf-8");
             this.carts = JSON.parse(data);
         } catch (error) {
-            // Si no existe o da error, empezamos con un array vacío
+        
             this.carts = [];
         }
     }
