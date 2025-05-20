@@ -55,37 +55,43 @@ class ProductManager {
 
     // Método para obtener todos los productos
     async getAllProducts() {
-        await this.loadProducts(); 
+        await this.loadProducts();
         return this.products;
     }
 
     // Método para obtener un producto por ID
     async getProductById(id) {
-        await this.loadProducts(); 
+        await this.loadProducts();
         return this.products.find(product => product.id === id);
     }
 
     // Método para actualizar un producto
     async updateProduct(id, updatedData) {
-        await this.loadProducts(); 
+        await this.loadProducts();
         const productIndex = this.products.findIndex(p => p.id === id);
 
         if (productIndex !== -1) {
             this.products[productIndex] = { ...this.products[productIndex], ...updatedData };
-            await this.saveProducts(); 
+            await this.saveProducts();
+            return this.products[productIndex];  // Retorna el producto actualizado
         }
+        return null;  // Retorna null si no encuentra el producto
     }
+
 
     // Método para eliminar un producto
     async deleteProduct(id) {
-        await this.loadProducts(); 
+        await this.loadProducts();
         const index = this.products.findIndex(p => p.id === id);
 
         if (index !== -1) {
-            this.products.splice(index, 1);
-            await this.saveProducts(); 
+            const productoEliminado = this.products.splice(index, 1)[0];
+            await this.saveProducts();
+            return productoEliminado;  // Retornamos el producto eliminado
         }
+        return null;  // Si no encontró producto
     }
+
 }
 
 module.exports = ProductManager;

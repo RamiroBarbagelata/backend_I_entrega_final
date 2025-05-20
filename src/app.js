@@ -7,8 +7,8 @@ const app = express();
 app.use(express.json());
 
 // Instanciar ProductManager y CartManager
-const productManager = new ProductManager("./src/products.json");  
-const cartManager = new CartManager("./src/carts.json");          
+const productManager = new ProductManager("./src/products.json");
+const cartManager = new CartManager("./src/carts.json");
 
 // let cartID = 1;  // Para asignar nuevos IDs de carritos
 
@@ -48,10 +48,13 @@ app.post("/api/products", async (req, res) => {
 });
 
 // PUT para actualizar un producto
+// PUT para actualizar un producto
 app.put("/api/products/:pid", async (req, res) => {
     const id = parseInt(req.params.pid);
     const datosActualizados = req.body;
+
     const productoActualizado = await productManager.updateProduct(id, datosActualizados);
+
     if (productoActualizado) {
         res.json(productoActualizado);
     } else {
@@ -59,16 +62,20 @@ app.put("/api/products/:pid", async (req, res) => {
     }
 });
 
+
+// DELETE para eliminar un producto
 // DELETE para eliminar un producto
 app.delete("/api/products/:pid", async (req, res) => {
     const id = parseInt(req.params.pid);
     const productoEliminado = await productManager.deleteProduct(id);
+
     if (productoEliminado) {
-        res.json({ eliminado: productoEliminado });
+        res.json({ mensaje: "Producto eliminado correctamente", producto: productoEliminado });
     } else {
         res.status(404).json({ error: "Producto no encontrado" });
     }
 });
+
 
 // --------------------- RUTAS DE CARRITOS ---------------------
 
@@ -106,7 +113,7 @@ app.post("/api/carts/:cid/product/:pid", async (req, res) => {
         carrito.products.push({ product: productId, quantity: 1 });
     }
 
-    await cartManager.updateCart(carrito);  
+    await cartManager.updateCart(carrito);
     res.json(carrito);
 });
 
