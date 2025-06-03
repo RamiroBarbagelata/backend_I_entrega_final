@@ -1,4 +1,4 @@
-const fs = require("fs").promises;
+const { readJSON, writeJSON } = require("./utils/fileManager");
 const path = require("path");
 
 class CartManager {
@@ -6,10 +6,10 @@ class CartManager {
         this.filePath = path.join(__dirname, "carts.json");
     }
 
-    // Cargar carrito
+    
     async loadCarts() {
         try {
-            const data = await fs.readFile(this.filePath, "utf-8");
+            const data = await readJSON(this.filePath, "utf-8");
             this.carts = JSON.parse(data);
         } catch (error) {
         
@@ -17,16 +17,16 @@ class CartManager {
         }
     }
 
-    // Guardar carritos en el archivo
+    
     async saveCarts() {
         try {
-            await fs.writeFile(this.filePath, JSON.stringify(this.carts, null, 2));
+            await writeJSON(this.filePath, JSON.stringify(this.carts, null, 2));
         } catch (error) {
             console.error("❌ Error al guardar carritos:", error.message);
         }
     }
 
-    // Crear un nuevo carrito
+    
     async createCart() {
         await this.loadCarts();
 
@@ -43,13 +43,13 @@ class CartManager {
         return newCart;
     }
 
-    // Obtener un carrito por su ID
+    
     async getCartById(id) {
         await this.loadCarts();
         return this.carts.find(c => c.id === id);
     }
 
-    // Actualizar un carrito completo
+    
     async updateCart(cart) {
         await this.loadCarts();
         const index = this.carts.findIndex(c => c.id === cart.id);

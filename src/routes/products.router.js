@@ -3,16 +3,16 @@ const router = express.Router();
 const ProductManager = require('../src/productManager');
 
 
-const productManager = new ProductManager("../src/products.json");
+const productManager = new ProductManager("/data/products.json");
 
-// GET de todos los productos
+
 router.get("/", async (req, res) => {
     const products = await productManager.getAllProducts();
     res.json(products);
 });
 
 
-// GET producto por ID
+
 router.get("/:pid", async (req, res) => {
     const id = parseInt(req.params.pid);
     const producto = await productManager.getProductById(id);
@@ -23,7 +23,7 @@ router.get("/:pid", async (req, res) => {
     }
 });
 
-// POST nuevo producto
+
 router.post("/", async (req, res) => {
     const { title, description, code, price, status, stock, category, thumbnails } = req.body;
     const nuevoProducto = await productManager.addProduct({
@@ -39,7 +39,7 @@ router.post("/", async (req, res) => {
     res.status(201).json(nuevoProducto);
 });
 
-// PUT actualizar producto
+
 router.put("/:pid", async (req, res) => {
     const id = parseInt(req.params.pid);
     const datosActualizados = req.body;
@@ -51,7 +51,7 @@ router.put("/:pid", async (req, res) => {
     }
 });
 
-// DELETE eliminar producto
+
 router.delete("/:pid", async (req, res) => {
     const id = parseInt(req.params.pid);
     const productoEliminado = await productManager.deleteProduct(id);

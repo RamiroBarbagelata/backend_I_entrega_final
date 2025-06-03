@@ -1,4 +1,4 @@
-const fs = require("fs").promises;
+const { readJSON, writeJSON } = require("./utils/fileManager");
 const path = require("path");
 
 class ProductManager {
@@ -6,10 +6,10 @@ class ProductManager {
         this.path = path.join(__dirname, "products.json");
     }
 
-    // Método para cargar los productos desde el archivo JSON
+    
     async loadProducts() {
         try {
-            let data = await fs.readFile(this.path, "utf-8");
+            let data = await readJSON(this.path, "utf-8");
             this.products = JSON.parse(data);
             console.log("Productos cargados:", this.products);
         } catch (error) {
@@ -19,17 +19,17 @@ class ProductManager {
     }
 
 
-    // Método para guardar los productos en el archivo JSON
+    
     async saveProducts() {
         try {
-            await fs.writeFile(this.path, JSON.stringify(this.products, null, 2));
+            await writeJSON(this.path, JSON.stringify(this.products, null, 2));
         } catch (error) {
             console.error("Error al guardar productos:", error.message);
         }
     }
 
 
-    // Método para agregar un nuevo producto
+    
     async addProduct(product) {
         await this.loadProducts();
 
@@ -38,34 +38,34 @@ class ProductManager {
             ? Math.max(...this.products.filter(p => p.id !== null).map(p => p.id)) + 1
             : 1;
 
-        // Creamos el nuevo producto con el ID generado
+        
         const newProduct = {
             id: newId,
             ...product
         };
 
-        // Añadimos el nuevo producto a la lista de productos
+        
         this.products.push(newProduct);
-        await this.saveProducts(); // Guardamos los productos con el nuevo producto agregado
+        await this.saveProducts(); 
 
-        return newProduct; // Retornamos el producto creado
+        return newProduct; 
     }
 
 
 
-    // Método para obtener todos los productos
+   
     async getAllProducts() {
         await this.loadProducts();
         return this.products;
     }
 
-    // Método para obtener un producto por ID
+    
     async getProductById(id) {
         await this.loadProducts();
         return this.products.find(product => product.id === id);
     }
 
-    // Método para actualizar un producto
+    
     async updateProduct(id, updatedData) {
         await this.loadProducts();
         const productIndex = this.products.findIndex(p => p.id === id);
@@ -73,13 +73,13 @@ class ProductManager {
         if (productIndex !== -1) {
             this.products[productIndex] = { ...this.products[productIndex], ...updatedData };
             await this.saveProducts();
-            return this.products[productIndex];  // Retorna el producto actualizado
+            return this.products[productIndex];  
         }
-        return null;  // Retorna null si no encuentra el producto
+        return null; 
     }
 
 
-    // Método para eliminar un producto
+    
     async deleteProduct(id) {
         await this.loadProducts();
         const index = this.products.findIndex(p => p.id === id);
@@ -87,9 +87,9 @@ class ProductManager {
         if (index !== -1) {
             const productoEliminado = this.products.splice(index, 1)[0];
             await this.saveProducts();
-            return productoEliminado;  // Retornamos el producto eliminado
+            return productoEliminado;  
         }
-        return null;  // Si no encontró producto
+        return null;  
     }
 
 }
