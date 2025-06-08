@@ -1,100 +1,86 @@
-const { readJSON, writeJSON } = require("./utils/fileManager");
-const path = require("path");
+const Product = require("../models/product.model");
 
 class ProductManager {
-    constructor() {
-        this.path = path.join(__dirname, "products.json");
-    }
 
-    
-    async loadProducts() {
+    async addProduct(productData) {
         try {
-            let data = await readJSON(this.path, "utf-8");
-            this.products = JSON.parse(data);
-            console.log("Productos cargados:", this.products);
+            const product = new Product(productData);
+            const savedProduct = await product.save();
+            return savedProduct;
         } catch (error) {
-            console.log("No se pudo cargar productos, inicializando lista vacía.");
-            this.products = [];
+            console.error("Error al agregar producto:", error.message);
+            throw error;
         }
     }
 
-
-    
-    async saveProducts() {
+    async getAllProducts(filter = {}, options = {}) {
+        // options: { limit, page, sort }
         try {
-            await writeJSON(this.path, JSON.stringify(this.products, null, 2));
+            const limit = options.limit ? parseInt(options.limit) : 10;
+            const page = options.page ? parseInt(options.page) : 1;
+            const sort = options.sort === 'asc' ? { price: 1 }
+                : options.sort === 'desc' ? { price: -1 }
+                    : {};
+
+            const skip = (page - 1) * limit;
+
+            const products = await Product.find(filter)
+                .limit(limit)
+                .skip(skip)
+                .sort(sort)
+                .lean();
+
+            const totalProducts = await Product.countDocuments(filter);
+            const totalPages = Math.ceil(totalProducts / limit);
+
+            return {
+                status: "success",
+                payload: products,
+                totalPages,
+                prevPage: page > 1 ? page - 1 : null,
+                nextPage: page < totalPages ? page + 1 : null,
+                page,
+                hasPrevPage: page > 1,
+                hasNextPage: page < totalPages,
+                prevLink: page > 1 ? `?page=${page - 1}&limit=${limit}` : null,
+                nextLink: page < totalPages ? `?page=${page + 1}&limit=${limit}` : null,
+            };
         } catch (error) {
-            console.error("Error al guardar productos:", error.message);
+            console.error("Error al obtener productos:", error.message);
+            throw error;
         }
     }
 
-
-    
-    async addProduct(product) {
-        await this.loadProducts();
-
-        // Filtrar productos con id: null y calcular el nuevo ID
-        let newId = this.products.filter(p => p.id !== null).length > 0
-            ? Math.max(...this.products.filter(p => p.id !== null).map(p => p.id)) + 1
-            : 1;
-
-        
-        const newProduct = {
-            id: newId,
-            ...product
-        };
-
-        
-        this.products.push(newProduct);
-        await this.saveProducts(); 
-
-        return newProduct; 
-    }
-
-
-
-   
-    async getAllProducts() {
-        await this.loadProducts();
-        return this.products;
-    }
-
-    
     async getProductById(id) {
-        await this.loadProducts();
-        return this.products.find(product => product.id === id);
+        try {
+            return await Product.findById(id).lean();
+        } catch (error) {
+            console.error("Error al obtener producto por ID:", error.message);
+            throw error;
+        }
     }
 
-    
     async updateProduct(id, updatedData) {
-        await this.loadProducts();
-        const productIndex = this.products.findIndex(p => p.id === id);
-
-        if (productIndex !== -1) {
-            this.products[productIndex] = { ...this.products[productIndex], ...updatedData };
-            await this.saveProducts();
-            return this.products[productIndex];  
+        try {
+            return await Product.findByIdAndUpdate(id, updatedData, { new: true });
+        } catch (error) {
+            console.error("Error al actualizar producto:", error.message);
+            throw error;
         }
-        return null; 
     }
 
-
-    
     async deleteProduct(id) {
-        await this.loadProducts();
-        const index = this.products.findIndex(p => p.id === id);
-
-        if (index !== -1) {
-            const productoEliminado = this.products.splice(index, 1)[0];
-            await this.saveProducts();
-            return productoEliminado;  
+        try {
+            return await Product.findByIdAndDelete(id);
+        } catch (error) {
+            console.error("Error al eliminar producto:", error.message);
+            throw error;
         }
-        return null;  
     }
-
 }
 
 module.exports = ProductManager;
+
 
 
 

@@ -6,18 +6,18 @@ class CartManager {
         this.filePath = path.join(__dirname, "carts.json");
     }
 
-    
+
     async loadCarts() {
         try {
             const data = await readJSON(this.filePath, "utf-8");
             this.carts = JSON.parse(data);
         } catch (error) {
-        
+
             this.carts = [];
         }
     }
 
-    
+
     async saveCarts() {
         try {
             await writeJSON(this.filePath, JSON.stringify(this.carts, null, 2));
@@ -26,7 +26,7 @@ class CartManager {
         }
     }
 
-    
+
     async createCart() {
         await this.loadCarts();
 
@@ -43,13 +43,13 @@ class CartManager {
         return newCart;
     }
 
-    
+
     async getCartById(id) {
         await this.loadCarts();
         return this.carts.find(c => c.id === id);
     }
 
-    
+
     async updateCart(cart) {
         await this.loadCarts();
         const index = this.carts.findIndex(c => c.id === cart.id);

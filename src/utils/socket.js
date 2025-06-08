@@ -1,5 +1,5 @@
-const ProductManager = require("../managers/ProductManager.js");
-const productManager = new ProductManager("data/products.json"); 
+// const ProductManager = require("../managers/ProductManager.js");
+// const productManager = new ProductManager("data/products.json"); 
 
 module.exports = (io) => {
     io.on("connection", async (socket) => {

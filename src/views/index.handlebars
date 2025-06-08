@@ -1,6 +1,43 @@
-<h1>Lista de Productos</h1>
-<ul>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Productos</title>
+</head>
+
+<body>
+  <h1>Productos</h1>
+
+  <ul>
     {{#each products}}
-        <li>{{this.title}} - ${{this.price}}</li>
+    <li>
+      <strong>{{title}}</strong> - ${{price}}<br />
+      Categoría: {{category}}<br />
+      Stock: {{stock}}<br />
+
+      <form action="/api/carts/6844d142b2370783a35d9595/product/{{_id}}" method="POST">
+        <button type="submit">🛒 Agregar al carrito</button>
+      </form>
+    </li>
+    <hr />
+
+    <hr />
     {{/each}}
-</ul>
+  </ul>
+
+  <div>
+    {{#if pagination.hasPrevPage}}
+    <a href="/products?page={{pagination.prevPage}}">⬅️ Anterior</a>
+    {{/if}}
+
+    <span> Página {{pagination.page}} </span>
+
+    {{#if pagination.hasNextPage}}
+    <a href="/products?page={{pagination.nextPage}}">Siguiente ➡️</a>
+    {{/if}}
+  </div>
+
+</body>
+
+</html>
