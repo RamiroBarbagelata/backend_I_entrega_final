@@ -15,7 +15,7 @@ router.get("/products", async (req, res) => {
       limit: parseInt(limit),
       page: parseInt(page),
       sort: sort === "asc" ? { price: 1 } : sort === "desc" ? { price: -1 } : {},
-      lean: true // 👈 para que Handlebars pueda renderizar los datos
+      lean: true 
     };
 
     const result = await Product.paginate(filter, options);
@@ -47,6 +47,11 @@ router.get("/carts/:cid", async (req, res) => {
   } catch (error) {
     res.status(500).send("Error al cargar el carrito");
   }
+});
+
+router.get("/realtimeproducts", async (req, res) => {
+    const productos = await Product.find().lean();
+    res.render("realTimeProducts", { products: productos });
 });
 
 module.exports = router;

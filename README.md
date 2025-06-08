@@ -50,7 +50,7 @@ Incluye la implementación completa de un sistema de productos y carritos de com
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/RamiroBarbagelata/Backend-1-entrega-2.git
+git clone https://github.com/RamiroBarbagelata/backend_I_entrega_final.git
 cd Backend-1-entrega-2
 
 # Instalar dependencias
@@ -68,6 +68,7 @@ npm start
 Abrir en navegador:  
 ➡️ `http://localhost:8080/products`  
 ➡️ `http://localhost:8080/realtimeproducts`
+➡️ `http://localhost:8080/carts/6844d142b2370783a35d9595`
 
 ---
 
